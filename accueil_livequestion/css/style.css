@@ -1,0 +1,180 @@
+.main{
+	background-color: rgb(35,50,55);
+}
+
+/* navbar */
+
+.navbar{
+	padding: 20px 0;
+}
+.accueil{
+	margin: 0 auto;
+	height: fit-content;
+	padding: 0;
+}
+.titre{
+	float: left;
+	font-size: 2rem;
+	color: white;
+	font-weight: 700;
+}
+.navbar-nav{
+	float: right;
+	display: block;
+}
+.nav-item{
+	float: left;
+}
+.lien-nav{
+	margin-right: 50px;
+	padding: 10px 0;
+	color: rgb(150,150,150) !important;
+	font-weight: 700;
+	font-size: 1.5rem;
+}
+.btn-connexion{
+	padding: 5px 25px;
+	background-color: rgb(240,0,150);
+	border-radius: 30px;
+	color: white;
+	font-weight: 500;
+	font-size: 1.25rem;
+}
+.btn-connexion a{
+	color: rgb(220,220,220);
+}
+.dropdown{
+	visibility: hidden;
+	float: right;
+	height: 55.6px;
+	width: 0;
+}
+#dropdownMenuButton{
+	border: none;
+	padding: 0;
+	background-color: rgba(0,0,0,0);
+	height: 100%;
+	outline: none;
+}
+.fa-caret-down{
+	color: white;
+	margin: 0 10px;
+}
+.dropdown-menu{
+	position: absolute !important;
+}
+
+/* presentation */
+
+.presentation{
+	margin-top: 100px;
+	height: 2000px;
+}
+.texte-presentation{
+	color: white;
+	float: left;
+	font-weight: 500;
+	width: 40%;
+}
+.titre-presentation{
+	font-size: 5.25rem;
+	margin-bottom: 25px;
+	margin-top: -25px;
+	line-height: 90px;
+}
+.para-presentation{
+	font-size: 1.25rem;
+	line-height: 35px;
+	text-align: justify;
+}
+.image-presentation{
+	height: 500px;
+	width: 55%;
+	background-image: url("../maquette/ressources/step-1.png");
+	background-size: cover;
+	background-position: center;
+	float: right;
+}
+.btn-cta{
+	padding: 15px 30px;
+	width: fit-content;
+	background-color: rgb(240,0,150);
+	border-radius: 30px;
+	font-size: 1.25rem;
+	margin-top: 20px;
+}
+
+@media screen and (max-width: 1800px){
+	.titre{
+		font-size: 1.5rem;
+		margin-top: 8px;
+	}
+	.lien-nav{
+		margin-right: 10px;
+		font-size: 1.25rem;
+		margin-top: 2px;
+	}
+	.btn-connexion{
+		font-size: 1rem;
+		padding: 0 15px;
+		margin-top: 6px;
+	}
+	.texte-presentation, .image-presentation{
+		width: 100%;
+	}
+	.titre-presentation{
+		text-align: center;
+	}
+	.para-presentation{
+		text-align: center;
+	}
+	.image-presentation{
+		margin-top: 50px;
+	}
+	.btn-cta{
+		margin: 50px auto 0 auto;
+	}
+}
+
+@media screen and (max-width: 720px){
+	.lien-nav{
+		display: none;
+	}
+	.dropdown{
+		height: 28.8px;
+		width: fit-content;
+		visibility: visible;
+	}
+	.fa-caret-down{
+		height: 100%;
+		margin-top: 10px;
+	}
+	.titre-presentation{
+		font-size: 3.25rem;
+	}
+}
+
+@media screen and (max-width: 540px){
+	.titre{
+		font-size: 0.75rem;
+		margin-top: 8px;
+	}
+	.btn-connexion{
+		font-size: 0.75rem;
+	}
+	.fa-caret-down{
+		margin-top: 6px;
+	}
+	.titre-presentation{
+		font-size: 2.5rem;
+	}
+	.para-presentation{
+		font-size: 1rem;
+	}
+	.presentation{
+		margin-top: 50px;
+	}
+	.image-presentation{
+		height: 300px;
+	}
+}
