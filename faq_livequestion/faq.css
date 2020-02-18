@@ -1,0 +1,67 @@
+.question_faq{
+	border: solid rgb(240,240,240) 1px;
+	font-weight: bold;
+	text-align: left;
+	margin-top: 15px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 15px;
+	padding-right: 15px;
+	border-radius: 5px;
+}
+.bouton_faq:hover{
+	color: black;
+	text-decoration: none;
+}
+.fleche_droite_faq{
+	width: 10px;
+	height: 10px;
+	float: right;
+}
+.tout_faq{
+	text-align: center;
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.reponse_faq{
+	border: solid rgb(240,240,240) 1px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px; 
+	border-top: none;
+	text-align: left;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 15px;
+}
+.bouton_faq{
+	color: black;
+}
+.titre_question_faq , .fleche_droite_faq{
+	display: inline-block;
+}
+.titre_question_faq{
+	margin: 0;
+}
+.get_in_touch_faq{
+	color: rgb(240,0,150);
+	font-weight: bold;
+}
+.get_in_touch_faq:hover{
+	color: rgb(240,0,150);
+	text-decoration: none;
+}
+.phrase_bas_faq{
+	background-color: rgb(240,240,240);
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 60px;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	border-radius: 5px;
+}
+.phrases_haut_faq{
+	margin-bottom: 60px;
+	margin-top: 20px;
+}
