@@ -1,0 +1,13 @@
+.nav p{
+    display: inline-block;
+    padding: 10px;
+    font-weight: 500;
+    margin: 0;
+    font-size: 1.25rem;
+}
+.title{
+    color: darkmagenta;
+}
+.questions a, .ask_question a{
+    color: black;
+}
