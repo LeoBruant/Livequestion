@@ -18,9 +18,10 @@
                     <input type="text" class="form-text" name="libelle">
 
                     <p>Catégorie de la question<span class="required">*</span></p>
-                    <select id="categories" class="form-text">
+                    <select class="form-text" name="categories">
+                        <option value = "vide"></option>
                         <?php
-                            $sql = 'SELECT Libelle_categorie FROM categorie';
+                            $sql = 'SELECT * FROM categorie';
                             $query = $connexion->query($sql);
                             $query->setFetchMode(PDO::FETCH_ASSOC);
                             while ($row = $query->fetch()):
@@ -33,8 +34,26 @@
             </form>
 
             <?php
-            require_once("traitement/verif_question.php");
-            require_once("traitement/envoi_question.php");
+                if(isset($_POST["valider"]) && (empty($_POST["libelle"]) || $_POST["categories"] == "vide")){
+                    echo'Veuillez remplir tous les champs';
+                }
+
+                elseif(isset($_POST["valider"]) && !empty($_POST["libelle"])){
+                    $query = $connexion->prepare('INSERT INTO question (Titre_question, Date_creation_question, Id_profil, Id_categorie) VALUES (:Titre_question, :Date_creation_question, :Id_profil, :Id_categorie)');
+
+                    $query->bindParam(':Titre_question', $Titre_question);
+                    $query->bindParam(':Id_profil', $Id_profil);
+                    $query->bindParam(':Id_categorie', $Id_categorie);
+                    $query->bindParam(':Date_creation_question', $Date_creation_question);
+
+                    $Titre_question = $_POST['libelle'];
+                    $Id_profil = 1;
+                    $Id_categorie = $_POST['categories'];
+                    $Date_creation_question = date("Y-m-d");
+
+                    $query->execute();
+                    echo'<p class="text-center">Votre question a bien été envoyée</p>';
+                }
             ?>
         </main>
     </body>
