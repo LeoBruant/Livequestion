@@ -7,6 +7,9 @@
     </head>
     <body class="body">
         <?php
+
+            //affichage du header
+
             require_once("includes/header.php");
             require_once("traitement/connexion.php");
         ?>
@@ -21,10 +24,8 @@
                     <select class="form-text" name="categories">
                         <option value = "vide"></option>
                         <?php
-                            $sql = 'SELECT * FROM categorie';
-                            $query = $connexion->query($sql);
-                            $query->setFetchMode(PDO::FETCH_ASSOC);
-                            while ($row = $query->fetch()):
+                            $categories = $connexion->query('SELECT * FROM categorie')->fetchAll();
+                            while ($row = $categories->fetch()):
                                 echo '<option value="'.$row.'">'.htmlspecialchars($row["Libelle_categorie"]).'</option>';
                             endwhile;
                         ?>
