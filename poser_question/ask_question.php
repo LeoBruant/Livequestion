@@ -46,11 +46,13 @@
                     $query->bindParam(':Id_profil', $Id_profil);
                     $query->bindParam(':Id_categorie', $Id_categorie);
                     $query->bindParam(':Date_creation_question', $Date_creation_question);
+                    
+                    $date = new DateTime();
 
                     $Titre_question = $_POST['libelle'];
                     $Id_profil = 1;
                     $Id_categorie = $_POST['categories'];
-                    $Date_creation_question = date("Y-m-d");
+                    $Date_creation_question = $date->format('Y-m-d');
 
                     $query->execute();
                     echo'<p class="text-center">Votre question a bien été envoyée</p>';
