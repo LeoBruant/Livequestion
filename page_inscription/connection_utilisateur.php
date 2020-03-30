@@ -13,7 +13,7 @@
 	</form>
 	<?php
 
-	if (isset($_POST['nom']) && isset($_POST['prenom'])) {
+	if (isset($_POST['nom']) && isset($_POST['mot_de_passe'])) {
 	}
 	$_SESSION['utilisateur'] = [
 		'Nom' => $_POST['nom'],
