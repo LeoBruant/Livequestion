@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Login</title>
-	<link rel="stylesheet" type="text/css" href="style.css" >
+	<link rel="stylesheet" type="text/css" href="inscription.css" >
 	<?php require_once('../header.php'); ?>
 	<?php require_once('./traitement/connection_bdd.php'); ?>
 </head>
