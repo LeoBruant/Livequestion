@@ -3,7 +3,7 @@
 <head>
 	<title>Login</title>
 	<?php require_once('../header.php'); ?>
-	<?php require_once('connection_bdd.php'); ?>
+	<?php require_once('./traitement/connection_bdd.php'); ?>
 </head>
 <body>
 	<form method="post">
