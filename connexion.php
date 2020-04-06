@@ -24,7 +24,7 @@
         <p class="text-center">Vous n'avez pas de compte ? Inscrivez vous <a href="inscription.php">ici</a></p>
         <?php
             require_once("traitement/connexion_bdd.php");
-            $profils = $connexion->query('SELECT * FROM profil')->fetchAll();
+            $profils = $connexion->query('SELECT Pseudo_profil, MotDePasse_profil FROM profil')->fetchAll();
 
             // vérification du remplissage de tous les champs
 
@@ -38,9 +38,9 @@
                 // vérification de l'existence du compte
 
                 while($trouve == false && $ind < count($profils)){
-                    if($profils[$ind][1] == $_POST['pseudo']){
+                    if($profils[$ind]['Pseudo_profil'] == $_POST['pseudo']){
                         $trouve = true;
-                        if($profils[$ind][3] == hash('sha1', $_POST['mdp'])){
+                        if($profils[$ind]['MotDePasse_profil'] == hash('sha1', $_POST['mdp'])){
                             $_SESSION['pseudo'] = $_POST['pseudo'];
                             header('Location: les_questions.php');
                             exit();
