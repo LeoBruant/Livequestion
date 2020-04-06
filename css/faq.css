@@ -1,3 +1,50 @@
+.texte_blanc{
+	color: white;
+}
+.gras{
+	font-weight: bold;
+}
+.partie_haut_faq{
+	text-align: center;
+	background-color: #D50076;
+	width: 100%; 
+	padding-bottom: 50px;
+	padding-top: 80px;
+}
+.titre_partie_haut_faq{
+	font-size: 3em;
+}
+.paragraphe_partie_haut_faq , .marques_partie_haut_faq{
+	width: 45%;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 50px;
+	padding-bottom: 20px
+}
+.marque{
+	background-color: white;
+	color: black;
+	width: 20%;
+	border-radius: 5px;
+	float: left;
+	margin-right: 5%;
+	margin-top: 15px;
+	padding: 1px;
+}
+.marques_du_bas{
+	width: 100%;
+	padding-left: 15%;
+	margin-left: auto;
+	margin-right: auto;
+}
+.arrondi_haut_faq{
+	height: 150px;
+	background-color: #D50076;
+	width: 100%;
+	border-radius: 45%;
+	border-top-right-radius: 0%;
+	border-top-left-radius: 0%;
+}
 .question_faq{
 	border: solid rgb(240,240,240) 1px;
 	font-weight: bold;
@@ -23,6 +70,11 @@
 	width: 800px;
 	margin-left: auto;
 	margin-right: auto;
+	background-color: white;
+	border-radius: 45%;
+	border-top-right-radius: 0%;
+	border-top-left-radius: 0%;
+	padding-top: 50px;
 }
 .reponse_faq{
 	border: solid rgb(240,240,240) 1px;
@@ -64,4 +116,27 @@
 .phrases_haut_faq{
 	margin-bottom: 60px;
 	margin-top: 20px;
+}
+.footer_faq{
+	background-color: #1A2D34;
+	width: 100%;
+	height: 300px;
+}
+.arrondi_footer_faq{
+	width: 100%;
+	height: 55%;
+	background-color: white;
+	border-radius: 45%;
+	border-top-left-radius: 0%;
+	border-top-right-radius: 0%;
+}
+.copyright{
+	margin-left: auto;
+	margin-right: auto;
+	width: 65%;
+	margin-top: 5%;
+	border-top: solid white 1px;
+}
+.reseaux{
+	float: right;
 }
