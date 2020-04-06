@@ -38,15 +38,15 @@
 
 				if(isset($_POST["valider"]) && (!empty($_POST["nom"]) && !empty($_POST["mot_de_passe"]) && !empty($_POST["email"]) && $_POST["genre"] !== "vide")){
 
-					// verification de l'existence du compte
+					// verification de la non existence du compte
 
-					$profil = $connexion->query('SELECT * FROM profil')->fetchAll();
+					$profil = $connexion->query('SELECT Pseudo_profil, Mail_profil FROM profil')->fetchAll();
 					$trouve_pseudo = false;
 					$trouve_email = false;
 					$ind = 0;
 
 					while($trouve_pseudo === false && $ind < count($profil))
-						if($_POST['nom'] === $profil[$ind][1]){
+						if($_POST['nom'] === $profil[$ind]['Pseudo_profil']){
 							$trouve_pseudo = true;
 						}
 					else{
@@ -56,7 +56,7 @@
 					$ind = 0;
 
 					while($trouve_email === false && $ind < count($profil)){
-						if($_POST['email'] === $profil[$ind][2]){
+						if($_POST['email'] === $profil[$ind]['Mail_profil']){
 							$trouve_email = true;
 						}
 						else{
