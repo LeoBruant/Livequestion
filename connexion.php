@@ -1,4 +1,6 @@
-<?php 
+<?php
+    // création de la session
+
     session_start();
     $_SESSION['pseudo'] = '';
 ?>
@@ -9,6 +11,9 @@
     </head>
     <body>
         <h1 class="text-center titre">Page de connexion</h1>
+
+        <!-- formulaire -->
+
         <form method="POST" class="text-center">
             <input type="text" placeholder="nom d'utilisateur" name="pseudo" class="col-3">
             <br>
@@ -20,16 +25,22 @@
         <?php
             require_once("traitement/connexion_bdd.php");
             $profils = $connexion->query('SELECT * FROM profil')->fetchAll();
+
+            // vérification du remplissage de tous les champs
+
             if((empty($_POST['pseudo']) || empty($_POST['mdp'])) && isset($_POST['valider'])){
                 echo'<p class="text-center">Veuillez remplir tous les champs</p>';
             }
             if(!empty($_POST['pseudo']) && !empty($_POST['mdp']) && isset($_POST['valider'])){
                 $trouve = false;
                 $ind = 0;
+
+                // vérification de l'existence du compte
+
                 while($trouve == false && $ind < count($profils)){
                     if($profils[$ind][1] == $_POST['pseudo']){
                         $trouve = true;
-                        if($profils[$ind][3] == $_POST['mdp']){
+                        if($profils[$ind][3] == hash('sha1', $_POST['mdp'])){
                             $_SESSION['pseudo'] = $_POST['pseudo'];
                             header('Location: les_questions.php');
                             exit();
