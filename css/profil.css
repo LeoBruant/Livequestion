@@ -1,0 +1,22 @@
+.photo
+{
+	width:100%;
+}
+
+.modif_icon
+{
+	text-align: center;
+	vertical-align: center;
+}
+.name-div
+{
+	float: left;
+}
+.saut-ligne
+{
+	padding-top: 24px;
+}
+i
+{
+	font-family: "Font Awesome";
+}
