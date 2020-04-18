@@ -48,7 +48,7 @@
                             <p>'.$questions[$i][2].'</p>
                         </div>
                         <div class="triangle"></div>
-                        <p class="question_text"><a href="question.php">'.$questions[$i][1].'</a></p>
+                        <p class="question_text"><a href="question.php?id=' . $questions[$i][0] . '">'.$questions[$i][1].'</a></p>
                         <br><br>
                     </div>';
                 }
