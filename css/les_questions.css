@@ -31,3 +31,11 @@
 .question_text a:hover{
     text-decoration: none;
 }
+.required{
+    color: darkmagenta;
+}
+.options input{
+    width: 50%;
+    height: 35px;
+    outline: none;
+}
