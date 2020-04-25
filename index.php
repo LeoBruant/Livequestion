@@ -86,7 +86,7 @@
 				</div>
 			</div>
 		</section>
-
+		<!-- la partie faq -->
 		<?php
 			$questionsFAQ=[
 				[
