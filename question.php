@@ -68,7 +68,7 @@
         <div class="question">
             <img class="profile_pic_question" src="https://i2.wp.com/yellowsummary.com/wp-content/uploads/2019/02/Icone-profil.png?fit=512%2C512&ssl=1">
             <div class="description">
-                <p><?php echo '  ' . $questions['Pseudo_profil']; ?></p>
+                <p><?php echo '  ' . $_SESSION['pseudo']; ?></p>
                 <p> | </p>
                 <p><?php echo'  ' . $c['Date_reponse']; ?></p>
                 <br/>
