@@ -29,7 +29,7 @@
 
 		<div class="col-lg-2 name-div"><br></div>
 		<form method="POST">
-			<div class="col-lg-4 name-div">
+			<div class="col-lg-4 name-div tout">
 				<p class="saut-ligne">pseudo : 
 					<?php   
 						echo $_SESSION['pseudo'];
