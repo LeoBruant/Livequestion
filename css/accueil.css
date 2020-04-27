@@ -125,13 +125,13 @@
 	margin-bottom: 30px;
 }
 .eclair{
-	background-image: url("../maquette/ressources/i1.png");
+	background-image: url("../ressources/maquette/ressources/i1.png");
 }
 .marqueur{
-	background-image: url("../maquette/ressources/i2.png");
+	background-image: url("../ressources/maquette/ressources/i2.png");
 }
 .cadre{
-	background-image: url("../maquette/ressources/i3.png");
+	background-image: url("../ressources/maquette/ressources/i3.png");
 }
 .sous-titre-accueil{
 	font-size: 1.75rem;
