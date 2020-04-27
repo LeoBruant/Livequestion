@@ -141,7 +141,158 @@
 	font-size: 1.5rem;
 	text-align: justify;
 }
-
+.arrondi_haut_presentation{
+	height: 60px;
+	background-color: rgb(35,50,55);
+	width: 100%;
+	border-radius: 45%;
+	border-top-right-radius: 0%;
+	border-top-left-radius: 0%;
+}
+/* partie faq */
+.texte_blanc{
+	color: white;
+}
+.gras{
+	font-weight: bold;
+}
+.partie_haut_faq{
+	text-align: center;
+	background-color: #D50076;
+	width: 100%; 
+	padding-bottom: 50px;
+	padding-top: 80px;
+}
+.titre_partie_haut_faq{
+	font-size: 3em;
+}
+.paragraphe_partie_haut_faq , .marques_partie_haut_faq{
+	width: 45%;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 50px;
+	padding-bottom: 20px
+}
+.marque{
+	background-color: white;
+	color: black;
+	width: 20%;
+	border-radius: 5px;
+	float: left;
+	margin-right: 5%;
+	margin-top: 15px;
+	padding: 1px;
+}
+.marques_du_bas{
+	width: 100%;
+	padding-left: 15%;
+	margin-left: auto;
+	margin-right: auto;
+}
+.arrondi_haut_faq{
+	height: 150px;
+	background-color: #D50076;
+	width: 100%;
+	border-radius: 45%;
+	border-top-right-radius: 0%;
+	border-top-left-radius: 0%;
+}
+.question_faq{
+	border: solid rgb(240,240,240) 1px;
+	font-weight: bold;
+	text-align: left;
+	margin-top: 15px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 15px;
+	padding-right: 15px;
+	border-radius: 5px;
+}
+.bouton_faq:hover{
+	color: black;
+	text-decoration: none;
+}
+.fleche_droite_faq{
+	width: 10px;
+	height: 10px;
+	float: right;
+}
+.tout_faq{
+	text-align: center;
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: white;
+	border-radius: 45%;
+	border-top-right-radius: 0%;
+	border-top-left-radius: 0%;
+	padding-top: 50px;
+}
+.reponse_faq{
+	border: solid rgb(240,240,240) 1px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px; 
+	border-top: none;
+	text-align: left;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 15px;
+}
+.bouton_faq{
+	color: black;
+}
+.titre_question_faq , .fleche_droite_faq{
+	display: inline-block;
+}
+.titre_question_faq{
+	margin: 0;
+}
+.get_in_touch_faq{
+	color: rgb(240,0,150);
+	font-weight: bold;
+}
+.get_in_touch_faq:hover{
+	color: rgb(240,0,150);
+	text-decoration: none;
+}
+.phrase_bas_faq{
+	background-color: rgb(240,240,240);
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 60px;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	border-radius: 5px;
+}
+.phrases_haut_faq{
+	margin-bottom: 60px;
+	margin-top: 20px;
+}
+.footer_faq{
+	background-color: #1A2D34;
+	width: 100%;
+	height: 300px;
+}
+.arrondi_footer_faq{
+	width: 100%;
+	height: 55%;
+	background-color: white;
+	border-radius: 45%;
+	border-top-left-radius: 0%;
+	border-top-right-radius: 0%;
+}
+.copyright{
+	margin-left: auto;
+	margin-right: auto;
+	width: 65%;
+	margin-top: 5%;
+	border-top: solid white 1px;
+}
+.reseaux{
+	float: right;
+}
+/* responsive accueil */
 @media screen and (max-width: 1800px){
 	.titre{
 		font-size: 1.5rem;
