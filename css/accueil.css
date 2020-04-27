@@ -93,7 +93,7 @@
 .image-presentation{
 	height: 500px;
 	width: 55%;
-	background-image: url("../maquette/ressources/step-1.png");
+	background-image: url("../ressources/maquette/ressources/step-1.png");
 	background-size: cover;
 	background-position: center;
 	float: right;
