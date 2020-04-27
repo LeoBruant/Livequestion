@@ -63,6 +63,7 @@
 				</div>
 			</div>
 		</section>
+		<div class="arrondi_haut_presentation"></div>
 
 		<!-- section sous la grande image -->
 
