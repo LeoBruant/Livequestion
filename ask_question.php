@@ -44,6 +44,7 @@
             </form>
 
             <?php
+                $profil = $connexion->query('SELECT Pseudo_profil, Id_profil FROM profil WHERE Pseudo_profil = "'.$_SESSION['pseudo'].'"')->fetchAll();
 
                 //vérification des champs et envoi des données
 
@@ -54,17 +55,17 @@
                 elseif(isset($_POST["valider"]) && !empty($_POST["libelle"])){
                     $query = $connexion->prepare('INSERT INTO question (Titre_question, Date_creation_question, Id_profil, Id_categorie) VALUES (:Titre_question, :Date_creation_question, :Id_profil, :Id_categorie)');
 
-                    $query->bindParam(':Titre_question', $Titre_question);
-                    $query->bindParam(':Id_profil', $Id_profil);
-                    $query->bindParam(':Id_categorie', $Id_categorie);
-                    $query->bindParam(':Date_creation_question', $Date_creation_question);
+                    $query->bindParam(':Titre_question', $titre_question);
+                    $query->bindParam(':Id_profil', $id_profil);
+                    $query->bindParam(':Id_categorie', $id_categorie);
+                    $query->bindParam(':Date_creation_question', $date_creation_question);
 
                     $date = new DateTime();
 
-                    $Titre_question = $_POST['libelle'];
-                    $Id_profil = 1;
-                    $Id_categorie = $_POST['categories'];
-                    $Date_creation_question = $date->format('Y-m-d');
+                    $titre_question = $_POST['libelle'];
+                    $id_profil = $profil[0]['Id_profil'];
+                    $id_categorie = $_POST['categories'];
+                    $date_creation_question = $date->format('Y-m-d');
 
                     $query->execute();
                     echo'<p class="text-center">Votre question a bien été envoyée</p>';

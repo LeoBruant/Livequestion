@@ -19,10 +19,10 @@
 
             require_once("traitement/connexion_bdd.php");
 
-            $profil = $connexion->query('SELECT Mail_profil, Genre_profil, Id_profil FROM profil WHERE Pseudo_profil = "'.$_SESSION['pseudo'].'"')->fetchAll();
+            $profil = $connexion->query('SELECT Mail_profil, Genre_profil, Id_profil, Image_profil FROM profil WHERE Pseudo_profil = "'.$_SESSION['pseudo'].'"')->fetchAll();
         ?>
 		<div class="col-lg-3 avatar name-div">
-			<img src="##" class="photo">
+			<?php echo'<img src="'.$profil[0]['Image_profil'].'" class="image">'; ?>
 		</div>
 
 		<!-- espacement de 2 colones entre nos div -->
@@ -35,13 +35,13 @@
 						echo $_SESSION['pseudo'];
 					?>
 				</p>
-				<input type="text" placeholder="modifer votre pseudo" name="nom" class="col-5">
+				<input type="text" placeholder="modifer votre pseudo" name="nom" class="col-7">
 				<p class="saut-ligne">e-mail : 
 					<?php 
 						echo $profil[0]['Mail_profil'];
 					?> 
 				</p>
-				<input type="email" placeholder="modifer votre adresse email" name="email" class="col-5">
+				<input type="email" placeholder="modifer votre adresse email" name="email" class="col-7">
 				<p class="saut-ligne">genre : 
 					<?php 
 						echo $profil[0]['Genre_profil'];
@@ -53,7 +53,8 @@
 					<option value="autre">autre</option>
 				</select>
 				<br>
-				<input type="submit" value="envoyer" class="col-5 mt-5" name="valider">
+				<input type="text" placeholder="Saisir le nouveau lien de votre image de profil" name="image" class="col-7 mt-5">
+				<input type="submit" value="envoyer" class="col-5 mt-5 mb-5" name="valider">
 			</div>
 		</form>
 
@@ -77,6 +78,12 @@
                 if(!empty($_POST['genre'])){
                     $query = $connexion->prepare('UPDATE profil SET Genre_profil = :genre WHERE Id_profil = "'.$profil[0]['Id_profil'].'"');
                     $query->bindParam(':genre', $_POST['genre']);
+					$query->execute();
+					header("Refresh:0");
+				}
+				if(!empty($_POST['image'])){
+                    $query = $connexion->prepare('UPDATE profil SET Image_profil = :image WHERE Id_profil = "'.$profil[0]['Id_profil'].'"');
+                    $query->bindParam(':image', $_POST['image']);
 					$query->execute();
 					header("Refresh:0");
                 }
