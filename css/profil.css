@@ -1,27 +1,24 @@
+.image{
+	height: 481px;
+	width: 481px;
+	margin: 100px 0 0 300px;
+}
+
 .tout{
 	background-color: lightgrey;
 	border-radius: 15px;
-	margin-top: 100px;
-}
-.photo
-{
-	width:100%;
+	margin: 100px 0 0 200px;
 }
 
-.modif_icon
-{
+.modif_icon{
 	text-align: center;
 	vertical-align: center;
 }
-.name-div
-{
+
+.name-div{
 	float: left;
 }
-.saut-ligne
-{
+
+.saut-ligne{
 	padding-top: 24px;
-}
-i
-{
-	font-family: "Font Awesome";
 }
