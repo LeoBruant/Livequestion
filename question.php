@@ -2,7 +2,7 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/les_questions.css">
+        <link rel="stylesheet" href="css/question.css">
         <title>Postez une réponse</title>
     </head>
     <body class="body">
@@ -11,7 +11,14 @@
 
                 //affichage du header
                 require_once("includes/header.php");
-               ?>
+
+                // vérification du compte
+
+                if(empty($_SESSION['pseudo'])){
+                    header('Location: index.php');
+                    exit();
+                }
+            ?>
         </header>
         
     <?php
@@ -45,7 +52,7 @@
 
         <main class="main">
                     <div class="question">
-                        <img class="profile_pic_question" src="https://i2.wp.com/yellowsummary.com/wp-content/uploads/2019/02/Icone-profil.png?fit=512%2C512&ssl=1">
+                        <?php echo'<img class="profile_pic_question" src="'.$questions['Image_profil'].'">'; ?>
                         <div class="description">
                             <p><?php echo '  ' . $questions['Pseudo_profil']; ?></p>
                             <p> | </p>
@@ -59,24 +66,23 @@
                     </div>
                         
     <?php
-        $commentaires = $connexion->prepare('SELECT * FROM reponse WHERE Id_question = ?');
-        $commentaires->execute(array($id));
+        $reponse = $connexion->query('SELECT Id_reponse, Date_reponse, Contenu_reponse, Id_profil FROM reponse WHERE Id_question = '.$_GET['id'].'')->fetchAll();
             
-        while($c = $commentaires->fetch()) {
-    ?>
-
-        <div class="question">
-            <img class="profile_pic_question" src="https://i2.wp.com/yellowsummary.com/wp-content/uploads/2019/02/Icone-profil.png?fit=512%2C512&ssl=1">
-            <div class="description">
-                <p><?php echo '  ' . $_SESSION['pseudo']; ?></p>
-                <p> | </p>
-                <p><?php echo'  ' . $c['Date_reponse']; ?></p>
-                <br/>
-                <p><?php echo '  ' . $c['Contenu_reponse']; ?></p>
-            </div>
-        </div>
-            
-    <?php
+        for ($i=0; $i < count($reponse); $i++){
+            $profil_reponse = $connexion->query('SELECT Pseudo_profil, Image_profil FROM profil WHERE Id_profil IN (SELECT Id_profil FROM reponse WHERE Id_question = '.$_GET['id'].') AND Id_profil = '.$reponse[$i]['Id_profil'].'')->fetchAll();
+            echo'
+                <div class="question">
+                    <div class="description mb-5">
+                        <img src="'.$profil_reponse[0]['Image_profil'].'" class="image">
+                        <p>'.$profil_reponse[0]['Pseudo_profil'].'</p>
+                        <p> | </p>
+                        <p>  '.$reponse[$i]['Date_reponse'].'</p>
+                        <br/>
+                        <div class="triangle"></div>
+                        <p class="reponse_text">  '.$reponse[$i]['Contenu_reponse'].'</p>
+                    </div>
+                </div>
+            ';
         }
     ?>
             
@@ -90,6 +96,7 @@
             </form>
             
             <?php
+                $profil = $connexion->query('SELECT Pseudo_profil, Id_profil FROM profil WHERE Pseudo_profil = "'.$_SESSION['pseudo'].'"')->fetchAll();
 
                 //vérification des champs et envoi des données
 
@@ -98,13 +105,22 @@
                 }
 
                 elseif(isset($_POST["valider"]) && !empty($_POST["reponse"])){
-                    $reponse = htmlspecialchars($_POST['reponse']);
                     
-                    $query = $connexion->prepare('INSERT INTO reponse (Contenu_reponse, Date_reponse, Id_profil, Id_question) VALUES (?,?,?,?)');
+                    $query = $connexion->prepare('INSERT INTO reponse (Contenu_reponse, Date_reponse, Id_profil, Id_question) VALUES (:contenu, :date, :id_profil, :id_question)');
+
+                    $query->bindParam(':contenu', $reponse);
+                    $query->bindParam(':date', $date_reponse);
+                    $query->bindParam(':id_profil', $id_profil);
+                    $query->bindParam(':id_question', $id_question);
+
+                    $reponse = $_POST['reponse'];
                     $date = new DateTime();
-                    $Date_reponse = $date->format('Y-m-d');
-                    $Id_profil = 1;
-                    $query->execute(array($reponse, $Date_reponse, $Id_profil, $id));
+                    $date_reponse = $date->format('Y-m-d');
+                    $id_profil = $profil[0]['Id_profil'];
+                    $id_question = $_GET['id'];
+
+                    $query->execute();
+
                     echo'<p class="text-center">Votre réponse a bien été soumise.</p>';
                 }
             ?>
