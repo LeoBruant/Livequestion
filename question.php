@@ -86,7 +86,7 @@
         }
     ?>
             
-        <!-- formulaire de question -->
+        <!-- formulaire de réponse -->
             <form method="POST">
                 <div class="options">
                     <p>Votre réponse<span class="required">*</span></p>
@@ -108,12 +108,12 @@
                     
                     $query = $connexion->prepare('INSERT INTO reponse (Contenu_reponse, Date_reponse, Id_profil, Id_question) VALUES (:contenu, :date, :id_profil, :id_question)');
 
-                    $query->bindParam(':contenu', $reponse);
+                    $query->bindParam(':contenu', $reponseq);
                     $query->bindParam(':date', $date_reponse);
                     $query->bindParam(':id_profil', $id_profil);
                     $query->bindParam(':id_question', $id_question);
 
-                    $reponse = $_POST['reponse'];
+                    $reponseq = $_POST['reponse'];
                     $date = new DateTime();
                     $date_reponse = $date->format('Y-m-d');
                     $id_profil = $profil[0]['Id_profil'];
