@@ -255,7 +255,7 @@
 }
 .tout_faq{
 	text-align: center;
-	width: 800px;
+	width: 50%;
 	margin-left: auto;
 	margin-right: auto;
 	background-color: white;
@@ -380,6 +380,9 @@
 		font-size: 1rem;
 		text-align: justify;
 	}
+	.tout_faq,.paragraphe_partie_haut_faq , .marques_partie_haut_faq{
+		width: 75%;
+	}
 }
 
 @media screen and (max-width: 720px){
@@ -426,5 +429,8 @@
 	}
 	.image-presentation{
 		height: 300px;
+	}
+	.tout_faq,.paragraphe_partie_haut_faq , .marques_partie_haut_faq{
+		width: 90%;
 	}
 }
