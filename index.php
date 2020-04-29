@@ -89,13 +89,18 @@
         
         		<!-- section AENEAN Magna Odio (avec les 3 onglets) -->
 		<section class="main3">
-		<div class="tout_faq">
+		<div class="tout_faq2">
 			<h1>Aenean magna odio</h1>
 			<p class="phrases_haut_faq">Sed ut perspiciatis unde monis iste natus error sit voluptatem<br/>
             accusantium doloremque laudantium, totam rem aperiam, eaque ipsa.</p>
 			<div class="questions_faq">
-				<div>
-                	<span class="liensv"><a href="###"> Lien 1 </a></span> <span class="liensv"><a href="###"> Lien 2 </a></span> <span class="liensv"><a href="##"> Lien 3 </a></span>
+				<div class="imgcenter">
+                	<a class="liensv" href="#lien1"> Lien 1 </a> <a class="liensv" href="#lien2"> Lien 2 </a> <a class="liensv" href="#lien3"> Lien 3 	</a>
+                    <div class="liensv2">
+                    	<p id="lien1"><img class='imgcenter' src='ressources/praesentvitae.png'></p>
+                    	<p id="lien2"><img class='imgcenter' src='ressources/praesentvitae.png'></p>
+                    	<p id="lien3"><img class='imgcenter' src='ressources/praesentvitae.png'></p>
+                    </div>
                 </div>
 			</div>
 		</div>
