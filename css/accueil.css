@@ -113,10 +113,12 @@
 	background-color: #F9FAFD;
 }
 .liensv
-{
-    text-align: center;
+{ 
+	text-decoration: none;
+	font-size: 2em;
     color: #EB038A;
-}
+    margin-left: 50px;
+   }
 .description-presentation{
 	height: 500px;
 	margin: 150px auto 0 auto;
