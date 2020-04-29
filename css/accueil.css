@@ -109,6 +109,14 @@
 .main2{
 	background-color: white;
 }
+.main3{
+	background-color: #F9FAFD;
+}
+.liensv
+{
+    text-align: center;
+    color: #EB038A;
+}
 .description-presentation{
 	height: 500px;
 	margin: 150px auto 0 auto;
@@ -148,6 +156,10 @@
 	border-radius: 45%;
 	border-top-right-radius: 0%;
 	border-top-left-radius: 0%;
+}
+.magna
+{
+    text-align: center;
 }
 /* partie faq */
 .texte_blanc{
