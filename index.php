@@ -86,6 +86,20 @@
 				</div>
 			</div>
 		</section>
+        
+        		<!-- section AENEAN Magna Odio (avec les 3 onglets) -->
+		<section class="main3">
+		<div class="tout_faq">
+			<h1>Aenean magna odio</h1>
+			<p class="phrases_haut_faq">Sed ut perspiciatis unde monis iste natus error sit voluptatem<br/>
+            accusantium doloremque laudantium, totam rem aperiam, eaque ipsa.</p>
+			<div class="questions_faq">
+				<div class="liensv">
+                	<h5 class="liensv">Lien 1</h5><h5>Lien 2</h5><h5>Lien 3</h5>
+                </div>
+			</div>
+		</div>
+		</section>
 		<!-- la partie faq -->
 		<?php
 			$questionsFAQ=[
