@@ -114,11 +114,33 @@
 }
 .liensv
 { 
-	text-decoration: none;
-	font-size: 2em;
+	text-align: center;
     color: #EB038A;
-    margin-left: 50px;
-   }
+    margin-left: 35px;
+}
+
+.liensv:hover, .liensv:active
+{ 
+	text-align: center;
+    color: white;
+    margin-left: 35px;
+    border: 1px none #EB038A;
+    background-color: #EB038A;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+.liensv2 p:not(:target)
+{
+    display: none;
+}
+.liensv2 p:target
+{
+    display: block;
+}
+.imgcenter
+{
+    text-align: center;
+}
 .description-presentation{
 	height: 500px;
 	margin: 150px auto 0 auto;
@@ -240,6 +262,13 @@
 	border-radius: 45%;
 	border-top-right-radius: 0%;
 	border-top-left-radius: 0%;
+	padding-top: 50px;
+}
+.tout_faq2{
+	text-align: center;
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
 	padding-top: 50px;
 }
 .reponse_faq{
