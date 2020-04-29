@@ -190,12 +190,12 @@
 					$ind = 0;
 					foreach ($questionsFAQ as $questionFAQ) {
 						echo'<a class="bouton_faq" id="bouton_faq" data-toggle="collapse" href="#reponse_faq'.$ind.'" role="button" aria-expanded="false" aria-controls="reponse_faq'.$ind.'">
-						<div class="question_faq">
-							<p class="titre_question_faq" >'.$questionFAQ['intitule_question_faq'].'</p>
-							<div class="fleche_droite_faq">
-							<i class="fas fa-caret-right icone_fleche_droite_faq"></i>
+							<div class="question_faq">
+								<p class="titre_question_faq" >'.$questionFAQ['intitule_question_faq'].'</p>
+								<div class="fleche_droite_faq">
+									<i class="fas fa-caret-right icone_fleche_droite_faq"></i>
+								</div>
 							</div>
-						</div>
 						</a>
 						<div class="reponse_faq collapse" id="reponse_faq'.$ind.'">
 							<p>'.$questionFAQ['reponse_faq'].'</p>
