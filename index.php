@@ -94,8 +94,8 @@
 			<p class="phrases_haut_faq">Sed ut perspiciatis unde monis iste natus error sit voluptatem<br/>
             accusantium doloremque laudantium, totam rem aperiam, eaque ipsa.</p>
 			<div class="questions_faq">
-				<div class="liensv">
-                	<h5 class="liensv">Lien 1</h5><h5>Lien 2</h5><h5>Lien 3</h5>
+				<div>
+                	<span class="liensv"><a href="###"> Lien 1 </a></span> <span class="liensv"><a href="###"> Lien 2 </a></span> <span class="liensv"><a href="##"> Lien 3 </a></span>
                 </div>
 			</div>
 		</div>
