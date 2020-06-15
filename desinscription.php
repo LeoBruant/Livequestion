@@ -11,6 +11,8 @@
         require_once("traitement/connexion_bdd.php");
         $deleteQuestions = $connexion->prepare("DELETE FROM question WHERE Id_profil = ?");
         $deleteQuestions->execute(array($id));
+        $deleteReponses = $connexion->prepare("DELETE FROM reponse WHERE Id_profil = ?");
+        $deleteReponses->execute(array($id));
         $statement = $connexion->prepare("DELETE FROM profil WHERE Id_profil = ?");
         $statement->execute(array($id));
         header('Location: index.php');
