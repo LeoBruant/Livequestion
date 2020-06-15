@@ -7,12 +7,19 @@
     <p class="questions"><a href="les_questions.php">Les questions</a></p>
     <p class="ask_question"><a href="ask_question.php">Poser une question</a></p>
     <?php
-        if(!empty($_SESSION['pseudo'])){
-            echo'<p class="bonjour">Bonjour '.$_SESSION['pseudo'].'</p><p><a href="index.php">deconnexion</a></p>
-            <p class="profil"><a href="profil.php">Profil</a></p>';
+
+        //connexion à la base de données
+        require_once("traitement/connexion_bdd.php");
+
+        $profil = $connexion->query('SELECT Id_profil FROM profil WHERE Pseudo_profil = "'.$_SESSION['pseudo'].'"')->fetchAll();
+    
+            if(!empty($_SESSION['pseudo'])){
+            echo'<p class="bonjour">Bonjour '.$_SESSION['pseudo'].'</p><p><a href="index.php">Déconnexion</a></p>
+            <p class="profil"><a href="profil.php">Profil</a></p>
+            <p><a href="desinscription.php?id='.$profil[0]['Id_profil'].'">Désinscription</a></p>';
         }
         else{
-            echo'<p><a href="connexion.php">se connecter</a></p>';
+            echo'<p><a href="connexion.php">Se connecter</a></p>';
         }
     ?>
 </nav>

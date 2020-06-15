@@ -6,6 +6,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
         <meta charset="utf-8">
         <link rel="stylesheet" href="css/profil.css">
+        <link rel="stylesheet" href="css/les_questions.css">
     </head>
 	<body>
         <?php
@@ -21,6 +22,7 @@
 
             $profil = $connexion->query('SELECT Mail_profil, Genre_profil, Id_profil, Image_profil FROM profil WHERE Pseudo_profil = "'.$_SESSION['pseudo'].'"')->fetchAll();
         ?>
+        <h1>Bonjour, <?php echo''.$_SESSION['pseudo'].''; ?>!</h1>
 		<div class="col-lg-3 avatar name-div">
 			<?php echo'<img src="'.$profil[0]['Image_profil'].'" class="image">'; ?>
 		</div>
@@ -48,9 +50,9 @@
 					?>
 				</p>
 				<select name="genre" class="col-3">
-					<option value="homme">homme</option>
-					<option value="femme">femme</option>
-					<option value="autre">autre</option>
+					<option value="homme" <?php if($profil[0]['Genre_profil'] == "homme") echo "selected='selected'"; ?>>homme</option>
+					<option value="femme" <?php if($profil[0]['Genre_profil'] == "femme") echo "selected='selected'"; ?>>femme</option>
+					<option value="autre" <?php if($profil[0]['Genre_profil'] == "autre") echo "selected='selected'"; ?>>autre</option>
 				</select>
 				<br>
 				<input type="text" placeholder="Saisir le nouveau lien de votre image de profil" name="image" class="col-7 mt-5">
@@ -89,11 +91,43 @@
                 }
             }
 		?>
+        
+        <main class="main">
+            <h1>Questions posées par l'utilisateur :</h1>
+            <?php
 
-		<!-- espacement de 1 colone entre nos div -->
+                //recupération de toutes les questions de l'utilisateur
 
-		<div class="col-lg-1 name-div">
-			<p> </p>
-		</div>
+                $question = $connexion->query('SELECT * FROM question WHERE Id_profil = '.$profil[0]['Id_profil'].' ORDER BY Date_creation_question')->fetchAll();
+
+                for($i = 0; $i < count($question); $i++){
+
+                    //récupération des categories, des profils, et des réponses correspondant aux questions
+
+                    $categorie = $connexion->query('SELECT Libelle_categorie FROM categorie WHERE Id_categorie = '.$question[$i][4])->fetchAll();
+                    $profil = $connexion->query('SELECT Pseudo_profil, Image_profil FROM profil WHERE Id_profil = '.$question[$i][3])->fetchAll();
+                    $reponse = $connexion->query('SELECT COUNT(*) FROM reponse WHERE Id_question = '.$question[$i][0])->fetchAll();
+
+                    //affichage des questions
+
+                    echo'
+                    <div class="question">
+                        <img class="profile_pic_question" src="'.$profil[0]['Image_profil'].'">
+                        <div class="description">
+                            <p>'.$profil[0][0].'</p>
+                            <p> | </p>
+                            <p>'.$reponse[0][0].' avis</p>
+                            <p> | </p>
+                            <p>'.$categorie[0][0].'</p>
+                            <p> | </p>
+                            <p>'.$question[$i][2].'</p>
+                        </div>
+                        <div class="triangle"></div>
+                        <p class="question_text"><a href="question.php?id=' . $question[$i][0] . '">'.$question[$i][1].'</a></p>
+                        <br><br>
+                    </div>';
+                }
+            ?>
+        </main>
 	</body>
 </html>

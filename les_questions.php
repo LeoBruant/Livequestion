@@ -23,7 +23,7 @@
 
                 //recupération de toutes les questions
 
-                $question = $connexion->query('SELECT * FROM question')->fetchAll();
+                $question = $connexion->query('SELECT * FROM question ORDER BY Date_creation_question')->fetchAll();
 
                 for($i = 0; $i < count($question); $i++){
 
