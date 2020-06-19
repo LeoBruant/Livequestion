@@ -1,4 +1,4 @@
-.nav p{
+header .nav:first-of-type p{
     padding: 10px;
     font-weight: 500;
     font-size: 1.25rem;
@@ -6,6 +6,7 @@
 }
 .titre{
     color: darkmagenta;
+    margin-left: 10px;
 }
 .questions a, .ask_question a{
     color: black;
