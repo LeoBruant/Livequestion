@@ -9,29 +9,32 @@
         <header>
             <?php
 
-                //affichage du header
+                // connexion à la base de données
+
+                require_once("traitement/connexion_bdd.php");
+
+                // recupération de toutes les questions
+
+                $question = $connexion->query('SELECT * FROM question ORDER BY Date_creation_question')->fetchAll();
+
+                // affichage du header
 
                 require_once("includes/header.php");
 
-                //connexion à la base de données
+                // affichage de la pagination
 
-                require_once("traitement/connexion_bdd.php");
+                require("includes/pagination.php");
             ?>
         </header>
         <main class="main">
             <?php
-
-                //recupération de toutes les questions
-
-                $question = $connexion->query('SELECT * FROM question ORDER BY Date_creation_question')->fetchAll();
-
-                for($i = 0; $i < count($question); $i++){
+                for($i = 0; $i < count($question)-30*($_GET['page']-1) && $i < 30; $i++){
 
                     //récupération des categories, des profils, et des réponses correspondant aux questions
 
-                    $categorie = $connexion->query('SELECT Libelle_categorie FROM categorie WHERE Id_categorie = '.$question[$i][4])->fetchAll();
-                    $profil = $connexion->query('SELECT Pseudo_profil, Image_profil FROM profil WHERE Id_profil = '.$question[$i][3])->fetchAll();
-                    $reponse = $connexion->query('SELECT COUNT(*) FROM reponse WHERE Id_question = '.$question[$i][0])->fetchAll();
+                    $categorie = $connexion->query('SELECT Libelle_categorie FROM categorie WHERE Id_categorie = '.$question[$i+30*($_GET['page']-1)]['Id_categorie'])->fetchAll();
+                    $profil = $connexion->query('SELECT Pseudo_profil, Image_profil FROM profil WHERE Id_profil = '.$question[$i+30*($_GET['page']-1)]['Id_profil'])->fetchAll();
+                    $reponse = $connexion->query('SELECT COUNT(*) FROM reponse WHERE Id_question = '.$question[$i+30*($_GET['page']-1)]['Id_question'])->fetchAll();
 
                     //affichage des questions
 
@@ -54,5 +57,10 @@
                 }
             ?>
         </main>
+        <?php
+            // affichage de la pagination
+
+            require("includes/pagination.php");
+        ?>
     </body>
 </html>
