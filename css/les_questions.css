@@ -4,29 +4,6 @@
 .main{
     padding: 25px 20px;
 }
-.page, .prev, .next{
-    float: left;
-    border: 1px solid lightgrey;
-    font-size: 1.25rem;
-    padding: 0 8px;
-}
-nav:nth-of-type(2) a:hover, .nav:first-of-type a:hover{
-    text-decoration: none;
-}
-.prev{
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-    border-right: none;
-    margin-left: 20px;
-}
-.nav:first-of-type{
-    padding-top: 20px;
-}
-.next{
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
-    border-left: none;
-}
 .profile_pic_question{
     width: 20px;
     height: 20px;
@@ -61,4 +38,7 @@ nav:nth-of-type(2) a:hover, .nav:first-of-type a:hover{
     width: 50%;
     height: 35px;
     outline: none;
+}
+.nav:first-of-type{
+    padding-top: 20px;
 }
