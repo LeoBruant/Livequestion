@@ -50,6 +50,8 @@
         
     ?>
 
+        <!-- affichage de la question -->
+
         <main class="main">
                     <div class="question">
                         <?php echo'<img class="profile_pic_question" src="'.$questions['Image_profil'].'">'; ?>
@@ -59,32 +61,59 @@
                             <p><?php echo '  ' . $questions['Libelle_categorie']; ?></p>
                             <p> | </p>
                             <p><?php echo'  ' . $questions['Date_creation_question']; ?></p>
+                            <p> | </p>
+                            <?php
+                                $likes = $connexion->query('SELECT count(Id_like) from likes where Id_question = '.$_GET['id'])->fetchAll();
+                                $liked = $connexion->query('SELECT count(Id_like) from likes where Id_question = '.$_GET['id'].' AND Id_likeur = (SELECT Id_profil from profil where Pseudo_profil = "'.$_SESSION['pseudo'].'")')->fetchAll();
+
+                                // affichage de l'icone et du nombre de likes
+
+                                    // si je n'ai pas liké
+
+                                if($liked[0][0] == 0){
+                                    echo'
+                                        <a href="includes/like.php?id='.$_GET['id'].'"><div class="like"></div></a>
+                                        <p>'.$likes[0][0].'</p>
+                                    ';
+                                }
+
+                                    // si j'ai liké
+
+                                else{
+                                    echo'
+                                        <a href="includes/like.php?id='.$_GET['id'].'"><div class="liked"></div></a>
+                                        <p>'.$likes[0][0].'</p>
+                                    ';
+                                }
+                            ?>
                         </div>
                         <div class="triangle"></div>
                         <p class="question_text"><?php echo '  ' .$questions['Titre_question']; ?></p>
                         <br><br>
                     </div>
+
+            <!-- affichage des réponses -->
                         
-    <?php
-        $reponse = $connexion->query('SELECT Id_reponse, Date_reponse, Contenu_reponse, Id_profil FROM reponse WHERE Id_question = '.$_GET['id'].'')->fetchAll();
-            
-        for ($i=0; $i < count($reponse); $i++){
-            $profil_reponse = $connexion->query('SELECT Pseudo_profil, Image_profil FROM profil WHERE Id_profil IN (SELECT Id_profil FROM reponse WHERE Id_question = '.$_GET['id'].') AND Id_profil = '.$reponse[$i]['Id_profil'].'')->fetchAll();
-            echo'
-                <div class="question">
-                    <div class="description mb-5">
-                        <img src="'.$profil_reponse[0]['Image_profil'].'" class="image">
-                        <p>'.$profil_reponse[0]['Pseudo_profil'].'</p>
-                        <p> | </p>
-                        <p>  '.$reponse[$i]['Date_reponse'].'</p>
-                        <br/>
-                        <div class="triangle"></div>
-                        <p class="reponse_text">  '.$reponse[$i]['Contenu_reponse'].'</p>
-                    </div>
-                </div>
-            ';
-        }
-    ?>
+            <?php
+                $reponse = $connexion->query('SELECT Id_reponse, Date_reponse, Contenu_reponse, Id_profil FROM reponse WHERE Id_question = '.$_GET['id'].'')->fetchAll();
+                    
+                for ($i=0; $i < count($reponse); $i++){
+                    $profil_reponse = $connexion->query('SELECT Pseudo_profil, Image_profil FROM profil WHERE Id_profil IN (SELECT Id_profil FROM reponse WHERE Id_question = '.$_GET['id'].') AND Id_profil = '.$reponse[$i]['Id_profil'].'')->fetchAll();
+                    echo'
+                        <div class="question">
+                            <div class="description mb-5">
+                                <img src="'.$profil_reponse[0]['Image_profil'].'" class="image">
+                                <p>'.$profil_reponse[0]['Pseudo_profil'].'</p>
+                                <p> | </p>
+                                <p>  '.$reponse[$i]['Date_reponse'].'</p>
+                                <br/>
+                                <div class="triangle"></div>
+                                <p class="reponse_text">  '.$reponse[$i]['Contenu_reponse'].'</p>
+                            </div>
+                        </div>
+                    ';
+                }
+            ?>
             
         <!-- formulaire de réponse -->
             <form method="POST">
