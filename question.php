@@ -72,7 +72,7 @@
 
                                 if($liked[0][0] == 0){
                                     echo'
-                                        <a href="includes/like.php?id='.$_GET['id'].'"><div class="like"></div></a>
+                                        <a href="traitement/like.php?id='.$_GET['id'].'"><div class="like"></div></a>
                                         <p>'.$likes[0][0].'</p>
                                     ';
                                 }
@@ -81,7 +81,7 @@
 
                                 else{
                                     echo'
-                                        <a href="includes/like.php?id='.$_GET['id'].'"><div class="liked"></div></a>
+                                        <a href="traitement/like.php?id='.$_GET['id'].'"><div class="liked"></div></a>
                                         <p>'.$likes[0][0].'</p>
                                     ';
                                 }
