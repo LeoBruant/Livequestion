@@ -21,7 +21,50 @@
             require_once("traitement/connexion_bdd.php");
 
             $profil = $connexion->query('SELECT Mail_profil, Genre_profil, Id_profil, Image_profil FROM profil WHERE Pseudo_profil = "'.$_SESSION['pseudo'].'"')->fetchAll();
-        ?>
+		?>
+		
+		<!-- amis -->
+
+		<div class="amis">
+			<h2 class="col-md-3">Amis</h2>
+			<h3>Requetes d'amis:</h3>
+			<h3>envoyer une requete d'ami:</h3>
+			<form method="POST">
+				<input type="text" placeholder="Pseudo de l'utilisateur" name="pseudo">
+				<input type="submit" value="envoyer" name="envoyer">
+
+				<?php
+
+					// vérification des champs
+
+					if(!empty($_POST['pseudo']) && isset($_POST['envoyer'])){
+						$utilisateur = $connexion->query('SELECT Pseudo_profil from profil where Pseudo_profil = "'.$_POST['pseudo'].'"')->fetchAll();
+
+						// si l'utilisateur existe
+
+						if(count($utilisateur) == 1){
+
+							// si l'utilisateur n'est pas nous même
+
+							if($utilisateur[0]['Pseudo_profil'] == $_SESSION['pseudo']){
+								echo'Vous ne pouvez pas vous ajouter en ami';
+							}
+
+							else{
+								echo'La requette a bien étée envoyée';
+							}
+						}
+
+						else{
+							echo'cet utilisateur n\'existe pas';
+						}
+					}
+				?>
+			</form>
+		</div>
+
+		<!-- avatar -->
+
         <h1>Bonjour, <?php echo''.$_SESSION['pseudo'].''; ?>!</h1>
 		<div class="col-lg-3 avatar name-div">
 			<?php echo'<img src="'.$profil[0]['Image_profil'].'" class="image">'; ?>
@@ -29,9 +72,9 @@
 
 		<!-- espacement de 2 colones entre nos div -->
 
-		<div class="col-lg-2 name-div"><br></div>
+		<div class="col-md-2 name-div"><br></div>
 		<form method="POST">
-			<div class="col-lg-4 name-div tout">
+			<div class="col-md-4 name-div tout">
 				<p class="saut-ligne">pseudo : 
 					<?php   
 						echo $_SESSION['pseudo'];
