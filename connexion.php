@@ -42,7 +42,7 @@
                         $trouve = true;
                         if($profils[$ind]['MotDePasse_profil'] == hash('sha1', $_POST['mdp'])){
                             $_SESSION['pseudo'] = $_POST['pseudo'];
-                            header('Location: les_questions.php');
+                            header('Location: les_questions.php?page=1');
                             exit();
                         }
                     }
