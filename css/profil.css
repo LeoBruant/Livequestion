@@ -1,7 +1,12 @@
+.amis{
+	float: left;
+	margin-top: 200px;
+}
+
 .image{
 	height: 481px;
 	width: 481px;
-	margin: 100px 0 0 300px;
+	margin: 125px 0 0 80px;
 }
 
 .tout{
