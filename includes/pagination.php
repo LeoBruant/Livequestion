@@ -10,8 +10,13 @@
 
         // numéros de page
 
-        for ($i=0; $i < count($question)/30; $i++){ 
-            echo'<p class="page"><a href="les_questions.php?page='.($i+1).'">'.($i+1).'</a></p>';
+        for ($i=0; $i < count($question)/30; $i++){
+            if($_GET['page'] == ($i+1)){
+                echo'<p class="page"><b><a href="les_questions.php?page='.($i+1).'">'.($i+1).'</a></b></p>';
+            }
+            else{
+                echo'<p class="page"><a href="les_questions.php?page='.($i+1).'">'.($i+1).'</a></p>';
+            }
         }
 
         // page suivante
