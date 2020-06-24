@@ -138,7 +138,7 @@
 		<div>
 			<h3>Amis:</h3>
 			<?php
-				$amis = $connexion->query('SELECT Id_envoyeur, Id_receveur from requete where Id_envoyeur = (SELECT Id_profil from profil where Pseudo_profil = "'.$_SESSION['pseudo'].'") or Id_receveur = (SELECT Id_profil from profil where Pseudo_profil = "'.$_SESSION['pseudo'].'")')->fetchAll();
+				$amis = $connexion->query('SELECT Id_envoyeur, Id_receveur from requete where Status_requete = "acceptee" and (Id_envoyeur = (SELECT Id_profil from profil where Pseudo_profil = "'.$_SESSION['pseudo'].'") or Id_receveur = (SELECT Id_profil from profil where Pseudo_profil = "'.$_SESSION['pseudo'].'"))')->fetchAll();
 
 				for ($i=0; $i < count($amis); $i++){
 					if($amis[$i]['Id_envoyeur'] == $pseudo[0]['Id_profil']){
