@@ -72,55 +72,61 @@
 								echo'Vous ne pouvez pas vous ajouter en ami';
 							}
 
-							// si une requête a déjà étée envoyée à cet utilisateur
-
-							$existe = $connexion->query('SELECT Id_requete from requete where Id_envoyeur = (SELECT Id_profil from profil where Pseudo_profil = "'.$_SESSION['pseudo'].'") and Id_receveur = (SELECT Id_profil from profil where Pseudo_profil = "'.$_POST['pseudo'].'")')->fetchAll();
-
-							if(count($existe) == 1){
-								echo'Une requête a déjà étée envoyée à cet utilisateur';
-							}
-
-							// si cet utilisateur vous a déjà envoyé une requête
-
-							$existe = $connexion->query('SELECT Id_requete from requete where Id_envoyeur = (SELECT Id_profil from profil where Pseudo_profil = "'.$_POST['pseudo'].'") and Id_receveur = (SELECT Id_profil from profil where Pseudo_profil = "'.$_SESSION['pseudo'].'") and Status_requete = "attente"')->fetchAll();
-
-							if(count($existe) == 1){
-								$query = $connexion->prepare('UPDATE requete set Status_requete = "acceptee" where Id_envoyeur = (SELECT Id_profil from profil where Pseudo_profil = "'.$_POST['pseudo'].'") and Id_receveur = (SELECT Id_profil from profil where Pseudo_profil = "'.$_SESSION['pseudo'].'")');
-
-								$query->execute();
-
-								echo'Vous êtes maintenant ami avec '.$_POST['pseudo'];
-							}
-
-							// si moi et cet utilisateur sommes déjà amis
-
-							$existe = $connexion->query('SELECT Id_requete from requete where Id_envoyeur = (SELECT Id_profil from profil where Pseudo_profil = "'.$_POST['pseudo'].'") and Id_receveur = (SELECT Id_profil from profil where Pseudo_profil = "'.$_SESSION['pseudo'].'")')->fetchAll();
-
-							if(count($existe) == 1){
-								echo'Vous êtes déjà ami avec cet utilisateur';
-							}
-
 							else{
+								// si une requête a déjà étée envoyée à cet utilisateur
+
 								$existe = $connexion->query('SELECT Id_requete from requete where Id_envoyeur = (SELECT Id_profil from profil where Pseudo_profil = "'.$_SESSION['pseudo'].'") and Id_receveur = (SELECT Id_profil from profil where Pseudo_profil = "'.$_POST['pseudo'].'")')->fetchAll();
 
 								if(count($existe) == 1){
-									echo'Vous êtes déjà ami avec cet utilisateur';
+									echo'Une demande a déjà été envoyée à cet utilisateur';
 								}
 
 								else{
-									$receveur = $connexion->query('SELECT Id_profil from profil where Pseudo_profil = "'.$_POST['pseudo'].'"')->fetchAll();
+									// si moi et cet utilisateur sommes déjà amis
 
-									$query = $connexion->prepare('INSERT INTO requete (Id_envoyeur, Id_receveur) VALUES (:Id_envoyeur, :Id_receveur)');
+									$existe = $connexion->query('SELECT Id_requete from requete where Id_envoyeur = (SELECT Id_profil from profil where Pseudo_profil = "'.$_POST['pseudo'].'") and Id_receveur = (SELECT Id_profil from profil where Pseudo_profil = "'.$_SESSION['pseudo'].'") and Status_requete = "acceptee"')->fetchAll();
 
-									$query->bindParam(':Id_envoyeur', $Id_envoyeur);
-									$query->bindParam(':Id_receveur', $Id_receveur);
+									if(count($existe) == 1){
+										echo'Vous êtes déjà ami avec cet utilisateur';
+									}
 
-									$Id_envoyeur = $pseudo[0]['Id_profil'];
-									$Id_receveur = $receveur[0]['Id_profil'];
+									else{
+										// si cet utilisateur vous a déjà envoyé une requête
 
-									$query->execute();
+										$existe = $connexion->query('SELECT Id_requete from requete where Id_envoyeur = (SELECT Id_profil from profil where Pseudo_profil = "'.$_POST['pseudo'].'") and Id_receveur = (SELECT Id_profil from profil where Pseudo_profil = "'.$_SESSION['pseudo'].'") and Status_requete = "attente"')->fetchAll();
 
-									echo'La demande a bien été envoyée';
+										if(count($existe) == 1){
+											$query = $connexion->prepare('UPDATE requete set Status_requete = "acceptee" where Id_envoyeur = (SELECT Id_profil from profil where Pseudo_profil = "'.$_POST['pseudo'].'") and Id_receveur = (SELECT Id_profil from profil where Pseudo_profil = "'.$_SESSION['pseudo'].'")');
+
+											$query->execute();
+
+											echo'Vous êtes maintenant ami avec '.$_POST['pseudo'];
+										}
+
+										else{
+											$existe = $connexion->query('SELECT Id_requete from requete where Id_envoyeur = (SELECT Id_profil from profil where Pseudo_profil = "'.$_SESSION['pseudo'].'") and Id_receveur = (SELECT Id_profil from profil where Pseudo_profil = "'.$_POST['pseudo'].'") and Status_requete = "acceptee"')->fetchAll();
+
+											if(count($existe) == 1){
+												echo'Vous êtes déjà ami avec cet utilisateur';
+											}
+
+											else{
+												$receveur = $connexion->query('SELECT Id_profil from profil where Pseudo_profil = "'.$_POST['pseudo'].'"')->fetchAll();
+
+												$query = $connexion->prepare('INSERT INTO requete (Id_envoyeur, Id_receveur) VALUES (:Id_envoyeur, :Id_receveur)');
+
+												$query->bindParam(':Id_envoyeur', $Id_envoyeur);
+												$query->bindParam(':Id_receveur', $Id_receveur);
+
+												$Id_envoyeur = $pseudo[0]['Id_profil'];
+												$Id_receveur = $receveur[0]['Id_profil'];
+
+												$query->execute();
+
+												echo'La demande a bien été envoyée';
+											}
+										}
+									}
 								}
 							}
 						}

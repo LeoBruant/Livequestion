@@ -1,4 +1,4 @@
-<html lang="fr">
+<html>
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -40,6 +40,10 @@
                         ?>
                     </select>
                 </div>
+                <br>
+                <label for="amis">Poser cette question uniquement à vos amis</label>
+                <input type="checkbox" name="amis" value="oui">
+                <br>
                 <input type="submit" class="button" name="valider">
             </form>
 
@@ -53,7 +57,15 @@
                 }
 
                 elseif(isset($_POST["valider"]) && !empty($_POST["libelle"])){
-                    $query = $connexion->prepare('INSERT INTO question (Titre_question, Date_creation_question, Id_profil, Id_categorie) VALUES (:Titre_question, :Date_creation_question, :Id_profil, :Id_categorie)');
+                    if($_POST['amis'] == "oui"){
+                        $query = $connexion->prepare('INSERT INTO question (Titre_question, Date_creation_question, Id_profil, Id_categorie, Amis_seulement) VALUES (:Titre_question, :Date_creation_question, :Id_profil, :Id_categorie, :Amis_seulement)');
+
+                        $query->bindParam(':Amis_seulement', $Amis_seulement);
+                        $Amis_seulement = 1;
+                    }
+                    else{
+                        $query = $connexion->prepare('INSERT INTO question (Titre_question, Date_creation_question, Id_profil, Id_categorie) VALUES (:Titre_question, :Date_creation_question, :Id_profil, :Id_categorie)');
+                    }
 
                     $query->bindParam(':Titre_question', $titre_question);
                     $query->bindParam(':Id_profil', $id_profil);

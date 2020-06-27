@@ -1,4 +1,4 @@
-<html lang="fr">
+<html>
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -8,6 +8,7 @@
     <body class="body">
         <header>
             <?php
+                $nb_questions = 30;
 
                 // connexion à la base de données
 
@@ -15,7 +16,7 @@
 
                 // recupération de toutes les questions
 
-                $question = $connexion->query('SELECT * FROM question ORDER BY Date_creation_question')->fetchAll();
+                $question = $connexion->query('SELECT * from question order by Id_question desc')->fetchAll();
 
                 // affichage du header
 
@@ -28,32 +29,53 @@
         </header>
         <main class="main">
             <?php
-                for($i = 0; $i < count($question)-30*($_GET['page']-1) && $i < 30; $i++){
+                $pseudo = $connexion->query('SELECT Id_profil from profil where Pseudo_profil = "'.$_SESSION['pseudo'].'"')->fetchAll();
+                $amis = $connexion->query('SELECT Id_envoyeur, Id_receveur from requete where Status_requete = "acceptee" and (Id_envoyeur = (SELECT Id_profil from profil where Pseudo_profil = "'.$_SESSION['pseudo'].'") or Id_receveur = (SELECT Id_profil from profil where Pseudo_profil = "'.$_SESSION['pseudo'].'"))')->fetchAll();
+                $ami = $connexion->query('SELECT Amis_seulement from question')->fetchAll();
 
-                    //récupération des categories, des profils, et des réponses correspondant aux questions
+                for($i = 0; $i < count($question)-$nb_questions*($_GET['page']-1) && $i < $nb_questions; $i++){
 
-                    $categorie = $connexion->query('SELECT Libelle_categorie FROM categorie WHERE Id_categorie = '.$question[$i+30*($_GET['page']-1)]['Id_categorie'])->fetchAll();
-                    $profil = $connexion->query('SELECT Pseudo_profil, Image_profil FROM profil WHERE Id_profil = '.$question[$i+30*($_GET['page']-1)]['Id_profil'])->fetchAll();
-                    $reponse = $connexion->query('SELECT COUNT(*) FROM reponse WHERE Id_question = '.$question[$i+30*($_GET['page']-1)]['Id_question'])->fetchAll();
+                    // récupération des informations correspondant aux questions
 
-                    //affichage des questions
+                    $categorie = $connexion->query('SELECT Libelle_categorie FROM categorie WHERE Id_categorie = '.$question[$i+$nb_questions*($_GET['page']-1)]['Id_categorie'])->fetchAll();
+                    $profil = $connexion->query('SELECT Id_profil, Pseudo_profil, Image_profil FROM profil WHERE Id_profil = '.$question[$i+$nb_questions*($_GET['page']-1)]['Id_profil'])->fetchAll();
+                    $reponse = $connexion->query('SELECT COUNT(*) FROM reponse WHERE Id_question = '.$question[$i+$nb_questions*($_GET['page']-1)]['Id_question'])->fetchAll();
 
-                    echo'
-                    <div class="question">
-                        <img class="profile_pic_question" src="'.$profil[0]['Image_profil'].'">
-                        <div class="description">
-                            <p>'.$profil[0][0].'</p>
-                            <p> | </p>
-                            <p>'.$reponse[0][0].' avis</p>
-                            <p> | </p>
-                            <p>'.$categorie[0][0].'</p>
-                            <p> | </p>
-                            <p>'.$question[$i][2].'</p>
-                        </div>
-                        <div class="triangle"></div>
-                        <p class="question_text"><a href="question.php?id=' . $question[$i][0] . '">'.$question[$i][1].'</a></p>
-                        <br><br>
-                    </div>';
+                    // vérification de si la question est en mode amis uniquement
+
+                    $afficher = 0;
+
+                    for ($i2 = 0; $i2 < count($amis); $i2++){
+                        if($amis[$i2]['Id_envoyeur'] == $pseudo[0]['Id_profil']){
+                            if($amis[$i2]['Id_receveur'] == $profil[0]['Id_profil'] || $pseudo[0]['Id_profil'] == $profil[0]['Id_profil']){
+                                $afficher = 1;
+                            }
+                        }
+                        elseif($amis[$i2]['Id_envoyeur'] == $profil[0]['Id_profil'] || $pseudo[0]['Id_profil'] == $profil[0]['Id_profil']){
+                            $afficher = 1;
+                        }
+                    }
+
+                    // affichage des questions
+
+                    if(($ami[$i+$nb_questions*($_GET['page']-1)]['Amis_seulement'] == 0) || ($ami[$i+$nb_questions*($_GET['page']-1)]['Amis_seulement'] == 1 && $afficher == 1)){
+                        echo'
+                        <div class="question">
+                            <img class="profile_pic_question" src="'.$profil[0]['Image_profil'].'">
+                            <div class="description">
+                                <p>'.$profil[0]['Pseudo_profil'].'</p>
+                                <p> | </p>
+                                <p>'.$reponse[0][0].' avis</p>
+                                <p> | </p>
+                                <p>'.$categorie[0]['Libelle_categorie'].'</p>
+                                <p> | </p>
+                                <p>'.$question[$i]['Date_creation_question'].'</p>
+                            </div>
+                            <div class="triangle"></div>
+                            <p class="question_text"><a href="question.php?id=' . $question[$i+$nb_questions*($_GET['page']-1)]['Id_question'] . '">'.$question[$i+$nb_questions*($_GET['page']-1)]['Titre_question'].'</a></p>
+                            <br><br>
+                        </div>';
+                    }
                 }
             ?>
         </main>
