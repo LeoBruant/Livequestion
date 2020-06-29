@@ -3,7 +3,7 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/les_questions.css">
-        <title>Page d'accueil de Livequestions</title>
+        <title>Page d'accueil de Livequestion</title>
     </head>
     <body class="body">
         <header>
@@ -39,7 +39,7 @@
 
                     $categorie = $connexion->query('SELECT Libelle_categorie FROM categorie WHERE Id_categorie = '.$question[$i+$nb_questions*($_GET['page']-1)]['Id_categorie'])->fetchAll();
                     $profil = $connexion->query('SELECT Id_profil, Pseudo_profil, Image_profil FROM profil WHERE Id_profil = '.$question[$i+$nb_questions*($_GET['page']-1)]['Id_profil'])->fetchAll();
-                    $reponse = $connexion->query('SELECT COUNT(*) FROM reponse WHERE Id_question = '.$question[$i+$nb_questions*($_GET['page']-1)]['Id_question'])->fetchAll();
+					$reponse = $connexion->query('SELECT COUNT(*) FROM reponse WHERE Id_question = '.$question[$i+$nb_questions*($_GET['page']-1)]['Id_question'])->fetchAll();
 
                     // vérification de si la question est en mode amis uniquement
 
