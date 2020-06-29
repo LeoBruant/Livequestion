@@ -54,7 +54,7 @@
             <p class="alert alert-warning">Êtes-vous sûr de vouloir vous désinscrire ? Ceci entraînera la suppression de toutes vos questions/réponses.</p>
         <div class="form-actions">
             <button type="submit" class="btn btn-warning"><i class="fas fa-trash-alt"></i> Oui</button>
-            <a class="btn btn-default" href="les_questions.php"><i class="fas fa-long-arrow-alt-left"></i> Non</a>
+            <a class="btn btn-default" href="les_questions.php?page=1"><i class="fas fa-long-arrow-alt-left"></i> Non</a>
         </div>
         </form>
     </body>
