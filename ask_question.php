@@ -33,16 +33,17 @@
                         <!-- affichage des catégories -->
 
                         <?php
-                            $categories = $connexion->query('SELECT Libelle_categorie FROM categorie')->fetchAll();
+							$categories = $connexion->query('SELECT Id_categorie, Libelle_categorie FROM categorie')->fetchAll();
+
                             for($i = 0; $i < count($categories); $i++){
-                                echo '<option value="'.$i.'">'.$categories[$i][0].'</option>';
+                                echo '<option value="'.$categories[$i]['Id_categorie'].'">'.$categories[$i]['Libelle_categorie'].'</option>';
                             }
                         ?>
                     </select>
                 </div>
                 <br>
                 <label for="amis">Poser cette question uniquement à vos amis</label>
-                <input type="checkbox" name="amis" value="oui">
+                <input type="checkbox" name="amis">
                 <br>
                 <input type="submit" class="button" name="valider">
             </form>
@@ -57,7 +58,7 @@
                 }
 
                 elseif(isset($_POST["valider"]) && !empty($_POST["libelle"])){
-                    if($_POST['amis'] == "oui"){
+                    if(isset($_POST['amis']) && !empty($_POST['amis'])){
                         $query = $connexion->prepare('INSERT INTO question (Titre_question, Date_creation_question, Id_profil, Id_categorie, Amis_seulement) VALUES (:Titre_question, :Date_creation_question, :Id_profil, :Id_categorie, :Amis_seulement)');
 
                         $query->bindParam(':Amis_seulement', $Amis_seulement);
