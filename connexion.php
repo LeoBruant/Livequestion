@@ -39,8 +39,11 @@
 
                 while($trouve == false && $ind < count($profils)){
                     if($profils[$ind]['Pseudo_profil'] == $_POST['pseudo']){
-                        $trouve = true;
-                        if($profils[$ind]['MotDePasse_profil'] == hash('sha1', $_POST['mdp'])){
+						$trouve = true;
+						
+						$hash = password_hash($_POST['mdp'], PASSWORD_ARGON2I);
+
+						if (password_verify($_POST['mdp'], $hash)){
                             $_SESSION['pseudo'] = $_POST['pseudo'];
                             header('Location: les_questions.php?page=1');
                             exit();

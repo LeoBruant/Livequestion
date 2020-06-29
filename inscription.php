@@ -86,7 +86,7 @@
 
 						$Pseudo_profil = $_POST['nom'];
 						$Mail_profil = $_POST['email'];
-						$MotDePasse_profil = hash('sha1', $_POST['mot_de_passe']);
+						$MotDePasse_profil = password_hash($_POST['mot_de_passe'], PASSWORD_ARGON2I);
 						$Genre_profil = $_POST['genre'];
 						$Id_role = 1;
 
