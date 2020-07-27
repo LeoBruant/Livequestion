@@ -29,7 +29,6 @@
         </header>
         <main class="main">
             <?php
-                $pseudo = $connexion->query('SELECT Id_profil from profil where Pseudo_profil = "'.$_SESSION['pseudo'].'"')->fetchAll();
                 $amis = $connexion->query('SELECT Id_envoyeur, Id_receveur from requete where Status_requete = "acceptee" and (Id_envoyeur = (SELECT Id_profil from profil where Pseudo_profil = "'.$_SESSION['pseudo'].'") or Id_receveur = (SELECT Id_profil from profil where Pseudo_profil = "'.$_SESSION['pseudo'].'"))')->fetchAll();
                 $ami = $connexion->query('SELECT Amis_seulement from question')->fetchAll();
 
@@ -46,12 +45,12 @@
                     $afficher = 0;
 
                     for ($i2 = 0; $i2 < count($amis); $i2++){
-                        if($amis[$i2]['Id_envoyeur'] == $pseudo[0]['Id_profil']){
-                            if($amis[$i2]['Id_receveur'] == $profil[0]['Id_profil'] || $pseudo[0]['Id_profil'] == $profil[0]['Id_profil']){
+                        if($amis[$i2]['Id_envoyeur'] == $_SESSION['id']){
+                            if($amis[$i2]['Id_receveur'] == $profil[0]['Id_profil'] || $_SESSION['id'] == $profil[0]['Id_profil']){
                                 $afficher = 1;
                             }
                         }
-                        elseif($amis[$i2]['Id_envoyeur'] == $profil[0]['Id_profil'] || $pseudo[0]['Id_profil'] == $profil[0]['Id_profil']){
+                        elseif($amis[$i2]['Id_envoyeur'] == $profil[0]['Id_profil'] || $_SESSION['id'] == $profil[0]['Id_profil']){
                             $afficher = 1;
                         }
                     }
