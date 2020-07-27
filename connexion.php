@@ -45,6 +45,11 @@
 
 						if (password_verify($_POST['mdp'], $hash)){
                             $_SESSION['pseudo'] = $_POST['pseudo'];
+                            
+                            $id_profil = $connexion->query('SELECT Id_profil from profil where Pseudo_profil = "'.$_SESSION['pseudo'].'"')->fetchAll();
+
+                            $_SESSION['id'] = $id_profil[0]['Id_profil'];
+
                             header('Location: les_questions.php?page=1');
                             exit();
                         }
