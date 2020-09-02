@@ -58,7 +58,7 @@
 
                     // affichage des questions
 
-                    if(($ami[$i+$nb_questions*($_GET['page']-1)]['Amis_seulement'] == 0) || ($ami[$i+$nb_questions*($_GET['page']-1)]['Amis_seulement'] == 1 && $afficher == 1)){
+                    if((($ami[$i+$nb_questions*($_GET['page']-1)]['Amis_seulement'] == 0) || ($ami[$i+$nb_questions*($_GET['page']-1)]['Amis_seulement'] == 1)) && $afficher == 1){
                         echo'
                         <div class="question">
                             <img class="profile_pic_question" src="'.$profil[0]['Image_profil'].'">
