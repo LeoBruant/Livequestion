@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body{
   background-image:url("../fond_inscription.jpg");
 }
@@ -6,4 +7,14 @@ body{
 }
 input, select{
   margin-bottom: 5px;
+=======
+body{
+  background-image:url("../fond_inscription.jpg");
+}
+.titre{
+  margin: 50px 0 100px 0; 
+}
+input, select{
+  margin-bottom: 5px;
+>>>>>>> 04471914325163b2d69142af37bd958f60748800
 }

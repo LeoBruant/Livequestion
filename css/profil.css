@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .amis{
 	float: left;
 	margin-top: 200px;
@@ -26,4 +27,34 @@
 
 .saut-ligne{
 	padding-top: 24px;
+=======
+.amis{
+	float: left;
+	margin-top: 200px;
+}
+
+.image{
+	height: 481px;
+	width: 481px;
+	margin: 125px 0 0 80px;
+}
+
+.tout{
+	background-color: lightgrey;
+	border-radius: 15px;
+	margin: 100px 0 0 200px;
+}
+
+.modif_icon{
+	text-align: center;
+	vertical-align: center;
+}
+
+.name-div{
+	float: left;
+}
+
+.saut-ligne{
+	padding-top: 24px;
+>>>>>>> 04471914325163b2d69142af37bd958f60748800
 }

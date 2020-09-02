@@ -27,8 +27,6 @@
         return $data;
     }
 ?>
-
-<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">

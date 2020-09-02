@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .body{
     background-color: lightgrey;
 }
@@ -30,4 +31,38 @@ select{
     border: none;
     border-radius: 3px;
     padding: 5px 10px;
+=======
+.body{
+    background-color: lightgrey;
+}
+.main{
+    padding: 25px 20px;
+}
+.page_title{
+    font-size: 1.25rem;
+}
+form p{
+    margin: 15px 0 5px 0;
+}
+.required{
+    color: darkmagenta;
+}
+.options input{
+    width: 100%;
+    height: 35px;
+    outline: none;
+}
+select{
+    width: 100%;
+    height: 35px;
+    outline: none;
+}
+.button{
+    background-color: darkmagenta;
+    margin-top: 15px;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+>>>>>>> 04471914325163b2d69142af37bd958f60748800
 }
