@@ -47,13 +47,13 @@
 
                     for ($i2 = 0; $i2 < count($amis); $i2++){
                         if($amis[$i2]['Id_envoyeur'] == $_SESSION['id']){
-                            if($amis[$i2]['Id_receveur'] == $profil[0]['Id_profil'] && $_SESSION['id'] == $profil[0]['Id_profil']){
+                            if($amis[$i2]['Id_receveur'] == $profil[0]['Id_profil'] || $_SESSION['id'] == $profil[0]['Id_profil']){
                                 $afficher = 1;
                             }
                         }
-                        elseif($amis[$i2]['Id_envoyeur'] == $profil[0]['Id_profil'] && $_SESSION['id'] == $profil[0]['Id_profil']){
+                        elseif($amis[$i2]['Id_envoyeur'] == $profil[0]['Id_profil'] || $_SESSION['id'] == $profil[0]['Id_profil']){
                             $afficher = 1;
-                        }
+						}
 					}
 
                     // affichage des questions
