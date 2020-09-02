@@ -33,9 +33,6 @@
                 $amis = $connexion->query('SELECT Id_envoyeur, Id_receveur from requete where Status_requete = "acceptee" and (Id_envoyeur = (SELECT Id_profil from profil where Pseudo_profil = "'.$_SESSION['pseudo'].'") or Id_receveur = (SELECT Id_profil from profil where Pseudo_profil = "'.$_SESSION['pseudo'].'"))')->fetchAll();
 				$ami = $connexion->query('SELECT Amis_seulement from question')->fetchAll();
 
-				var_dump($amis);
-				var_dump($ami);
-
                 for($i = 0; $i < count($question)-$nb_questions*($_GET['page']-1) && $i < $nb_questions; $i++){
 
                     // récupération des informations correspondant aux questions

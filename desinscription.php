@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 
     if(!empty($_GET['id']))

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
     // création de la session
 
