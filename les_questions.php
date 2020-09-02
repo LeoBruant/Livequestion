@@ -43,22 +43,22 @@
 
                     // vérification de si la question est en mode amis uniquement
 
-                    $afficher = 0;
+                    $amisUniquement = 0;
 
                     for ($i2 = 0; $i2 < count($amis); $i2++){
                         if($amis[$i2]['Id_envoyeur'] == $_SESSION['id']){
                             if($amis[$i2]['Id_receveur'] == $profil[0]['Id_profil'] || $_SESSION['id'] == $profil[0]['Id_profil']){
-                                $afficher = 1;
+                                $amisUniquement = 1;
                             }
                         }
                         elseif($amis[$i2]['Id_envoyeur'] == $profil[0]['Id_profil'] || $_SESSION['id'] == $profil[0]['Id_profil']){
-                            $afficher = 1;
+                            $amisUniquement = 1;
 						}
 					}
 
                     // affichage des questions
 
-                    if((($ami[$i+$nb_questions*($_GET['page']-1)]['Amis_seulement'] == 0) || ($ami[$i+$nb_questions*($_GET['page']-1)]['Amis_seulement'] == 1)) && $afficher == 1){
+                    if((($ami[$i+$nb_questions*($_GET['page']-1)]['Amis_seulement'] == 0) || ($ami[$i+$nb_questions*($_GET['page']-1)]['Amis_seulement'] == 1)) && $amisUniquement == 1){
                         echo'
                         <div class="question">
                             <img class="profile_pic_question" src="'.$profil[0]['Image_profil'].'">
